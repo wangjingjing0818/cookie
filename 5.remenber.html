@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body onload="onLoad()">
+用户名 <input type="text" id="username">
+
+<script>
+    //在加载完成之后执行此函数
+    //判断cookie中有没有用户名，如果没有，则弹出输入框让用户填写，如果有自动从cookie中取出填入input
+function onLoad(){
+    var username=getCookie('username');
+    if(!username){
+      username=  prompt('请输入用户名');
+        document.cookie=`username=${username}`;
+
+    }
+    document.getElementById('username').value=username;
+}
+
+function getCookie(key){
+    var cookie= document.cookie;
+    var regex=new RegExp(key+'=($|[^;]+)');
+
+    var result=cookie.match(regex);
+
+    if(result){
+        return result[1]
+    }else{
+        return "";
+    }
+}
+
+
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>
